@@ -11,7 +11,6 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import sorting from '../../asssets/img/tabler_arrows-sort.svg';
 
 export default function Detail(props) {
     const [openModalInformation, setModalInformation] = useState(false)
@@ -27,6 +26,7 @@ export default function Detail(props) {
     const [is_active, setIsActive] = useState(1)
     const [clickedTitle, setClickedTitle] = useState(true)
     const [isEdit, setIsEdit] = useState(false)
+    const [label, setLabel] = useState("Very High")
 
     let { id } = useParams();
 
@@ -130,6 +130,14 @@ export default function Detail(props) {
             })
     }
 
+    const options = [
+        { value: "very-high", label: 'Very High' },
+        { value: "high", label: 'High' },
+        { value: "normal", label: 'Medium' },
+        { value: "low", label: 'Low' },
+        { value: "very-low", label: 'Very Low' },
+    ]
+
     useEffect(() => {
         setClickedTitle(false)
         getDetail(id)
@@ -168,16 +176,12 @@ export default function Detail(props) {
 
                     </div>
                     <div className='d-flex'>
-                        {/* <button data-cy="todo-sort-button" type="button" id="dropdown-button-dark-example1" aria-expanded="true" class="btn-sort dropdown-toggle btn btn-secondary">
-                            <div class="icon-sort"></div>
-                        </button> */}
                         <Dropdown>
-                            {/* <div data-cy="todo-sort-button"> */}
-                            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary" className='btn-sort' data-cy="todo-sort-button">
+                            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary" className='btn-sort'>
                                 <div className='icon-sort' data-cy="todo-sort-button"></div>
                             </Dropdown.Toggle>
                             {/* </div> */}
-                            <Dropdown.Menu data-cy="sort-selection">
+                            <Dropdown.Menu>
                                 <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={latest}>
                                     <div className='icon-latest' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> Terbaru </span>
                                 </Dropdown.Item>
@@ -255,55 +259,33 @@ export default function Detail(props) {
                                 }}
                                 value={titleTodo}
                                 data-cy="modal-add-name-input"
-                                className='form-control'
+                                className='form-control  input-list'
                             />
-                            {/* <div data-cy="modal-add-name-input">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Tambahkan Activity"
-                                    onChange={(e) => {
-                                        setTitleTodo(e.target.value)
-                                    }}
-                                    value={titleTodo}
-                                    data-cy="modal-add-name-input"
-                                />
-                            </div> */}
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlTextarea1"
                         >
                             <Form.Label data-cy="modal-add-priority-title">PRIORITY</Form.Label>
-                            {/* <div data-cy="modal-add-priority-item"> */}
+                            <Dropdown>
+                                <Dropdown.Toggle id="dropdown-basic" data-cy="modal-add-priority-dropdown" className='priority-coy'>
+                                    {label}
+                                </Dropdown.Toggle>
 
-                            {/* <div data-cy="modal-add-priority-dropdown"> */}
-
-                            <select
-                                className='form-select'
-                                data-cy="modal-add-priority-dropdown"
-                                value={priorityTodo}
-                                onChange={(e) => { setPriorityTodo(e.target.value) }}
-
-                            >
-                                <option onChange={(e) => { setPriorityTodo(e.target.value) }} value="very-high"><img src={sorting} alt="uhuy" />Very High</option>
-                                <option onChange={(e) => { setPriorityTodo(e.target.value) }} value="high">High</option>
-                                <option onChange={(e) => { setPriorityTodo(e.target.value) }} value="normal">Medium</option>
-                                <option onChange={(e) => { setPriorityTodo(e.target.value) }} value="low">Low</option>
-                                <option onChange={(e) => { setPriorityTodo(e.target.value) }} value="very-low">Very Low</option>
-                            </select>
-                            {/* </div> */}
-                            {/* <Form.Select
-                                data-cy="modal-add-priority-dropdown"
-                                value={priorityTodo}
-                                onChange={(e) => { setPriorityTodo(e.target.value) }}
-                            >
-                                <option value="very-high"><img src={sorting} alt="uhuy" />Very High</option>
-                                <option value="high">High</option>
-                                <option value="normal">Medium</option>
-                                <option value="low">Low</option>
-                                <option value="very-low">Very Low</option>
-                            </Form.Select> */}
-                            {/* </div> */}
+                                <Dropdown.Menu>
+                                    {options.map(({ value, label }, index) =>
+                                        <Dropdown.Item
+                                            data-cy="modal-add-priority-item"
+                                            key={index}
+                                            onClick={() => {
+                                                setPriorityTodo(value)
+                                                setLabel(label)
+                                            }}
+                                        >{label}
+                                        </Dropdown.Item>
+                                    )}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

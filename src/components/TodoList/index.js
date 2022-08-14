@@ -3,36 +3,13 @@ import Form from 'react-bootstrap/Form';
 import iconTrash from '../../asssets/img/trash.svg'
 import emptyImageTodoList from '../../asssets/img/todo-empty-state.svg'
 
-export default function TodoList({ setIsEdit, setModalDelete, setIdListTodo, setTitleListTodo, setListTodo, listTodo, setIsActive, updateListTodo, is_active, idListTodo, setModal, setTitleTodo, setPriorityTodo }) {
+export default function TodoList({ setIsEdit, setModalDelete, setIdListTodo, setTitleListTodo, listTodo, setIsActive, updateListTodo, setModal, setTitleTodo, setPriorityTodo }) {
 
     const [idTodo, setIdTodo] = useState(null)
     const [active, setActive] = useState(1)
-    const [check, setCheck] = useState(false)
     const [priority, setPriority] = useState("")
-    const [className, setClassname] = useState("")
-    const [test, setTest] = useState(false)
-
-    const onChangeListTodo = (id, active) => {
-        const checkedTodo = listTodo.filter(el => el.id === id).map(ele => ({ ...ele, is_active: active }))
-        const filteredTodo = listTodo.filter(el => el.id !== id)
-        // console.log({ filteredTodo });
-        console.log({ checkedTodo });
-        const merged = filteredTodo.concat(checkedTodo)
-        console.log({ merged });
-
-        // setListTodo(merged)
-    }
-
-    const filter = listTodo.filter((el) => el.is_active === 0)
     let idKesekianya = null;
 
-    // function setDoneTodo(id) {
-    //     listTodo.map((list) => {
-    //         if (list.id === id) {
-    //             setTest(true)
-    //         }
-    //     })
-    // }
     useEffect(() => {
         updateListTodo(idTodo, active, priority)
 
@@ -50,33 +27,20 @@ export default function TodoList({ setIsEdit, setModalDelete, setIdListTodo, set
                                 data-cy="todo-item-checkbox"
                                 type='checkbox'
                                 defaultChecked={list.is_active === 0}
-                                // checked={check}
                                 onChange={(e) => {
-                                    // console.log("listid "+list.id)
-                                    // idKesekianya = list.id
-                                    // console.log("IDTODO 1", idTodo)
-                                    // console.log("IDTODO 2", idKesekianya)
                                     if (e.target.checked && idKesekianya === idTodo) {
-                                        // setDoneTodo(list.id)
                                         setIdListTodo(list.id)
                                         setIsActive(0)
                                         setActive(0)
-                                        setCheck(true)
                                         setIdTodo(list.id)
                                         setPriority(list.priority)
-                                        // setClassname("done")
                                     } else {
-                                        // setDoneTodo(list.id)
                                         setIdListTodo(list.id)
                                         setIdTodo(list.id)
                                         setIsActive(1)
                                         setActive(1)
-                                        setCheck(false)
                                         setPriority(list.priority)
-                                        // setClassname("")
                                     }
-                                    // updateListTodo(list.id, active, list.priority)
-                                    // onChangeListTodo(list.id, list.is_active)
                                 }}
                             />
                             <div

@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
 import Header from '../Header'
-import ButtonCustom from '../Button';
 import ItemList from '../ItemList';
 import alertImg from '../../asssets/img/icon-delete.svg'
 
