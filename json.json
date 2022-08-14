@@ -1,0 +1,230 @@
+{
+  "info": {
+    "_postman_id": "bc287804-c898-46b4-a63e-975ec6b25ead",
+    "name": "TODO TEST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ACTIVITY GROUP",
+      "item": [
+        {
+          "name": "list",
+          "id": "2ca2e6ad-f353-4344-b398-b4a8c5b29e70",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/activity-groups?email=yoga%2B1%40skyshi.io",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["activity-groups"],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "yoga%2B1%40skyshi.io",
+                  "description": "encode your email | ex: yoga+1@skyshi.io => yoga%2B1%40skyshi.io"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "36dfaf60-a1b0-43b5-a7c3-c2031dbbc6cd",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"coba 1\",\n    \"email\": \"yoga+1@skyshi.io\",\n    \"_comment\": \"email digunakan untuk membedakan list data yang digunakan antar aplikasi\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "https://todo.api.devcode.gethired.id/activity-groups"
+          },
+          "response": []
+        },
+        {
+          "name": "detail",
+          "id": "7aaa0513-0961-432e-9839-8521d131256e",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "https://todo.api.devcode.gethired.id/activity-groups/4"
+          },
+          "response": []
+        },
+        {
+          "name": "remove",
+          "id": "c1508e94-6f7b-4538-b61a-5297086ab94c",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/activity-groups/:id",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["activity-groups", ":id"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2,3",
+                  "description": "for multiple delete, if use this delete by params id will be ignore",
+                  "disabled": true
+                }
+              ],
+              "variable": [{ "key": "id", "value": "" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "eca803b4-86e0-42d7-b5d0-b0f2cbcd7568",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"coba 4\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "https://todo.api.devcode.gethired.id/activity-groups/4"
+          },
+          "response": []
+        }
+      ],
+      "id": "b2df0b31-437e-414e-bef7-bea3e295f96a"
+    },
+    {
+      "name": "TODO ITEMS",
+      "item": [
+        {
+          "name": "create",
+          "id": "e97ac765-844f-4cd2-8425-0e5b0828a32a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"activity_group_id\": 5,\n    \"title\": \"item 5.4\",\n    \"_comment\": \"list of priority is : very-high, high, normal, low, very-low | defalut value is very-high\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "https://todo.api.devcode.gethired.id/todo-items"
+          },
+          "response": []
+        },
+        {
+          "name": "list",
+          "id": "e1246e32-a786-486b-a554-028d5d3a3db6",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/todo-items?activity_group_id=4",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["todo-items"],
+              "query": [{ "key": "activity_group_id", "value": "4" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "detail",
+          "id": "3b1b72d9-077b-492d-a6a7-edc0324dae1e",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/todo-items/:id",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["todo-items", ":id"],
+              "variable": [{ "key": "id", "value": "4" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "4b34d94e-e973-400b-b408-7bb4c8295d60",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"item 5.1-2\",\n    \"is_active\": 1,\n    \"priority\": \"normal\",\n    \"_comment\": \"list of priority is : very-high, high, normal, low, very-low\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/todo-items/:id",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["todo-items", ":id"],
+              "variable": [{ "key": "id", "value": "3" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "f0d52679-a505-4c8a-bfb3-0578b412e011",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://todo.api.devcode.gethired.id/todo-items/:id",
+              "protocol": "https",
+              "host": ["todo", "api", "devcode", "gethired", "id"],
+              "path": ["todo-items", ":id"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5,6",
+                  "description": "for multiple delete, if use this query, delete by params id will be ignore",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "4",
+                  "description": "for single delete"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a2041453-6243-4e4b-8468-7f4adc555cbc",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b81ff745-ae1a-4870-b3ef-fe3b5e53dcac",
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4220d775-58fa-4ef6-b9d6-0eaf86ce6519",
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "id": "7fbc0786-cbe7-425c-b84c-89b6793860d1",
+      "key": "apiUrl",
+      "value": "https://api.todo.dev.gethired.id"
+    }
+  ]
+}
