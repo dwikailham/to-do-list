@@ -130,6 +130,14 @@ export default function Detail(props) {
             })
     }
 
+    const optionSortDropdown = [
+        { label: "Terbaru", funct: latest, style: "icon-latest" },
+        { label: "Terlama", funct: oldest, style: "icon-oldest" },
+        { label: "A - Z", funct: titleAscending, style: "icon-a-z" },
+        { label: "Z - A", funct: titleDescending, style: "icon-z-a" },
+        { label: "Belum Selesai", funct: latest, style: "icon-unfinished" }
+    ]
+
     const options = [
         { value: "very-high", label: 'Very High' },
         { value: "high", label: 'High' },
@@ -182,21 +190,11 @@ export default function Detail(props) {
                             </Dropdown.Toggle>
                             {/* </div> */}
                             <Dropdown.Menu>
-                                <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={latest}>
-                                    <div className='icon-latest' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> Terbaru </span>
-                                </Dropdown.Item>
-                                <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={oldest}>
-                                    <div className='icon-oldest' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> Terlama </span>
-                                </Dropdown.Item>
-                                <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={titleAscending}>
-                                    <div className='icon-a-z' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> A - Z </span>
-                                </Dropdown.Item>
-                                <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={titleDescending}>
-                                    <div className='icon-z-a' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> Z - A </span>
-                                </Dropdown.Item>
-                                <Dropdown.Item data-cy="sort-selection" tabIndex="0" onClick={latest}>
-                                    <div className='icon-unfinished' data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title">  Belum Selesai </span>
-                                </Dropdown.Item>
+                                {optionSortDropdown.map((el, index) => (
+                                    <Dropdown.Item key={index} data-cy="sort-selection" tabIndex="0" onClick={el.funct}>
+                                        <div className={el.style} data-cy="sort-selection-icon"></div> <span data-cy="sort-selection-title"> {el.label} </span>
+                                    </Dropdown.Item>
+                                ))}
                             </Dropdown.Menu>
                         </Dropdown>
                         <Button
